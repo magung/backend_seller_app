@@ -1,0 +1,1021 @@
+{
+	"info": {
+		"_postman_id": "cab4731c-3356-4b62-825b-db2cf27f9cfd",
+		"name": "seller_app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "agung",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "agung@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "agung",
+									"type": "text"
+								},
+								{
+									"key": "privilege_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5574e036-dce3-465c-a364-1283112dd9dc",
+								"exec": [
+									"var json_response = pm.response.json();",
+									"pm.globals.set(\"auth\", json_response.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "agung@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "agung",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/user/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFndW5nQGdtYWlsLmNvbSIsImlhdCI6MTU4NzgyNzkyMSwiZXhwIjoxNTg3OTE0MzIxfQ.sVEZDT6IZq7wzBnh82ih31DLkexssztYxxu6QsA3PKo"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "agung",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "picture",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "privilege_id",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFndW5nQGdtYWlsLmNvbSIsImlhdCI6MTU4NzgyNzkyMSwiZXhwIjoxNTg3OTE0MzIxfQ.sVEZDT6IZq7wzBnh82ih31DLkexssztYxxu6QsA3PKo"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "agung",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "picture",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "privilege_id",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "privilege",
+			"item": [
+				{
+					"name": "get privilege",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/privilege",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"privilege"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get privilege by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/privilege/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"privilege",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create privilege",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "privilege",
+									"value": "test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/privilege/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"privilege",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete privilege",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/privilege/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"privilege",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update privilege",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "privilege",
+									"value": "Main userrrr",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/privilege/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"privilege",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "product",
+			"item": [
+				{
+					"name": "get product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get product by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/product/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/product/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert project",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "product_name",
+									"value": "testing",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"description": "1 = Smartphone\n2 = Accessories\n3 = Other",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "100000",
+									"type": "text"
+								},
+								{
+									"key": "spesification",
+									"value": "tes",
+									"type": "text"
+								},
+								{
+									"key": "warranty_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "color_id",
+									"value": "1,2",
+									"description": "jika lebih dari satu tambahkan koma",
+									"type": "text"
+								},
+								{
+									"key": "picture",
+									"type": "file",
+									"src": "sc/Screen Shot 2020-07-10 at 15.45.20.png"
+								},
+								{
+									"key": "notes",
+									"value": "tes",
+									"type": "text"
+								},
+								{
+									"key": "store_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "period_id",
+									"value": "1",
+									"description": "jika warranty_id = 1, maka period_id harus 1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update project",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{auth}}"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "multipart/form-data",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "product_name",
+									"value": "edit testing",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "100000",
+									"type": "text"
+								},
+								{
+									"key": "spesification",
+									"value": "tes",
+									"type": "text"
+								},
+								{
+									"key": "warranty_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "color_id",
+									"value": "1,2",
+									"type": "text"
+								},
+								{
+									"key": "picture",
+									"type": "file",
+									"src": "sc/Screen Shot 2020-07-10 at 11.14.43.png"
+								},
+								{
+									"key": "notes",
+									"value": "tes",
+									"type": "text"
+								},
+								{
+									"key": "store_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "period_id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/product/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get product image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/product/image/2020-07-11 22:20:59 - Screen Shot 2020-07-03 at 17.22.59.png",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"product",
+								"image",
+								"2020-07-11 22:20:59 - Screen Shot 2020-07-03 at 17.22.59.png"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "transaction",
+			"item": [
+				{
+					"name": "get transaction",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/transaction?search=2020-07-12&store_id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"transaction"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "2020-07-12",
+									"description": "search by created-date"
+								},
+								{
+									"key": "store_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get transaction by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/transaction/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"transaction",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert transaction",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "price",
+									"value": "200000",
+									"type": "text"
+								},
+								{
+									"key": "product_id",
+									"value": "9",
+									"description": "formatnya jika lebih dari satu tambahkan koma \",\" untuk pemisah",
+									"type": "text"
+								},
+								{
+									"key": "payment_id",
+									"value": "1",
+									"description": "1 = Cash, 2 = Debit, 3 =Credit, 4 =Transfer Bank",
+									"type": "text"
+								},
+								{
+									"key": "customer_id",
+									"value": "1",
+									"description": "1 = Customer, 2 = Branch Store, 3 = Online Store",
+									"type": "text"
+								},
+								{
+									"key": "notes",
+									"value": "testing",
+									"type": "text"
+								},
+								{
+									"key": "store_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/transaction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"transaction"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update  transaction",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{auth}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "price",
+									"value": "200000",
+									"type": "text"
+								},
+								{
+									"key": "product_id",
+									"value": "9",
+									"description": "formatnya jika lebih dari satu tambahkan koma \",\" untuk pemisah",
+									"type": "text"
+								},
+								{
+									"key": "payment_id",
+									"value": "1",
+									"description": "1 = Cash, 2 = Debit, 3 =Credit, 4 =Transfer Bank",
+									"type": "text"
+								},
+								{
+									"key": "customer_id",
+									"value": "1",
+									"description": "1 = Customer, 2 = Branch Store, 3 = Online Store",
+									"type": "text"
+								},
+								{
+									"key": "notes",
+									"value": "testing update",
+									"type": "text"
+								},
+								{
+									"key": "store_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/transaction/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"transaction",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete  transaction",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{auth}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/transaction/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"transaction",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "store",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "payment",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "category",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "color",
+			"item": [
+				{
+					"name": "get color",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/color",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"color"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert color",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "color_name",
+									"value": "Pink",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/color",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"color"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update color",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "color_name",
+									"value": "Pink",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/color/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"color",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete color",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/color/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"color",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get color by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/color",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"color"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "customer",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "period",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "warranty",
+			"item": [],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

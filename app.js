@@ -17,13 +17,15 @@ var routeUsers = require(path + 'users');
 var routePrivilege = require(path + 'privilege');
 var routeTransaction = require(path + 'transaction');
 var routeProduct = require(path + 'product');
+var routeColor = require(path + 'color');
 
+app.use('/color', routeColor);
 app.use('/product', routeProduct);
 app.use('/transaction', routeTransaction);
 app.use('/privilege', routePrivilege);
 app.use('/user', routeUsers);
 app.use('/', routes);
 
-
 app.listen(port);
+module.exports.rootPath = __dirname
 console.log("Started on server http://localhost:"+port);

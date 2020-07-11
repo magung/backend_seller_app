@@ -1,7 +1,10 @@
 'use strict';
 var response = require('../res');
 var model = require('../models/product');
+var modelColor = require('../models/color');
 const moment = require('moment');
+const fs = require('fs')
+const app = require('../../app')
 module.exports = {
 	
 	insertProduct: async (req, res, next) => {
@@ -13,9 +16,14 @@ module.exports = {
                 spesification : req.body.spesification,
                 warranty_id : req.body.warranty_id,
                 color_id : req.body.color_id,
-                picture : req.body.picture,
+                picture : req.file.filename,
                 notes : req.body.notes,
-                store_id: req.body.store_id
+                store_id : req.body.store_id,
+                period_id: req.body.period_id
+            }
+
+            if(data.warranty_id == 1 && data.period_id != 1){
+                return response.dataManipulation(res, 201, "Failed create product, because period and warranty not match")
             }
     
             await model.insertProduct(data)
@@ -51,7 +59,18 @@ module.exports = {
             }
             where += " ORDER BY " + sortBy + " " + sort + " LIMIT " + skip + ", " + limit
             await model.allProduct(where)
-            .then(result => {
+            .then(async result => {
+                for(let key = 0; key < result.length;key++){
+                    let color_id = result[key].color_id.split(',')
+                    let color = []
+                    for(let i =0; i< color_id.length; i++){
+                        await modelColor.get(color_id[i])
+                        .then(res => {
+                            color.push(res[0])
+                        })
+                    }
+                    result[key].color = color
+                }
                 return response.dataManipulation(res, 200, "Success get all product", result)
             })
             .catch(err=>{
@@ -68,15 +87,15 @@ module.exports = {
             let product_id = parseInt(req.params.product_id)
             await model.getProduct(product_id)
             .then(async result => {
-                // let product_id = result[0].product_id.split(',')
-                // let product = []
-                // for(let i =0; i< product_id.length; i++){
-                //     await modelProduct.getProduct(product_id[i])
-                //     .then(res => {
-                //         product.push(res[0])
-                //     })
-                // }
-                // result[0].product = product
+                let color_id = result[0].color_id.split(',')
+                let color = []
+                for(let i =0; i< color_id.length; i++){
+                    await modelColor.get(color_id[i])
+                    .then(res => {
+                        color.push(res[0])
+                    })
+                }
+                result[0].color = color
                 return response.dataManipulation(res, 200, "Success get product", result[0])
             })
             .catch(err=>{
@@ -91,6 +110,10 @@ module.exports = {
     deleteProduct: async (req, res, next) => {
         try{
             let product_id = parseInt(req.params.product_id)
+            await model.getProduct(product_id)
+            .then(async result => {
+                fs.unlinkSync(app.rootPath + '/uploads/image_product/' + result[0].picture)
+            })
             await model.deleteProduct(product_id)
             .then(result => {
                 if(result.affectedRows > 0){
@@ -132,8 +155,18 @@ module.exports = {
             if(req.body.color_id) {
                 data.color_id = req.body.color_id
             }
-            if(req.body.picture) {
-                data.picture = req.body.picture
+            if(req.body.period_id){
+                data.period_id = req.body.period_id
+                if(data.warranty_id == 1 && data.period_id != 1){
+                    return response.dataManipulation(res, 201, "Failed update product, because period and warranty not match")
+                }
+            }
+            if(req.file) {
+                await model.getProduct(product_id)
+                .then(async result => {
+                    fs.unlinkSync(app.rootPath + '/uploads/image_product/' + result[0].picture)
+                })
+                data.picture = req.file.filename
             }
             if(req.body.notes) {
                 data.notes = req.body.notes
@@ -156,6 +189,6 @@ module.exports = {
         } catch(e) {
             next(e)
         }
-    }
+    },
     
 }

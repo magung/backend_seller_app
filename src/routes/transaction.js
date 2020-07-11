@@ -10,6 +10,6 @@ Route
  .get('/', Controller.allTransaction)
  .get('/:transaction_id', Controller.getTransaction)
  .post('/', Auth.verifyToken, Controller.insertTransaction)
- .delete('/:transaction_id', Controller.deleteTransaction)
- .put('/:transaction_id', Controller.updateTransaction)
+ .delete('/:transaction_id',  Auth.verifyToken, Controller.deleteTransaction)
+ .put('/:transaction_id',  Auth.verifyToken, Controller.updateTransaction)
  module.exports = Route

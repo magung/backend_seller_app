@@ -44,10 +44,10 @@ module.exports = {
     
             let where = ""
             if(search){
-                where += ` AND created_date LIKE "%${search}%"`
+                where += ` AND tr.created_date LIKE "%${search}%"`
             }
             if(store_id){
-                where += ` AND store_id = ` + store_id
+                where += ` AND tr.store_id = ` + store_id
             }
             where += " ORDER BY " + sortBy + " " + sort + " LIMIT " + skip + ", " + limit
             await model.allTransaction(where)
@@ -128,6 +128,9 @@ module.exports = {
             }
             if(req.body.notes) {
                 data.notes = req.body.notes
+            }
+            if(req.body.store_id) {
+                data.store_id = req.body.store_id
             }
             await model.updateTransaction(data, transaction_id)
             .then(result => {
